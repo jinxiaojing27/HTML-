@@ -138,9 +138,10 @@ LRESULT CALLBACK ROSE(HWND hwnd, UINT uMsg, WPARAM wParam, WPARAM Iparam)//å›žè°
 			{
 				LeftMove();
 				Ymark--;
+				
 				hdc = BeginPaint(hwnd, &pt);
 				OnPaint(hdc);
-				EndPaint(hwnd, &pt);
+				ReleaseDC(hwnd, hdc);
 			}
 			break;
 		case VK_RIGHT:
@@ -148,18 +149,20 @@ LRESULT CALLBACK ROSE(HWND hwnd, UINT uMsg, WPARAM wParam, WPARAM Iparam)//å›žè°
 			{
 				RightMove();
 				Ymark++;
+			
 				hdc = BeginPaint(hwnd, &pt);
 				OnPaint(hdc);
-				EndPaint(hwnd, &pt);
+				ReleaseDC(hwnd, hdc);
 			}
 			break;
 		case VK_UP:
 			if (CheckBottom())
 			{
 				ChangeShape();
+		
 				hdc = BeginPaint(hwnd, &pt);
 				OnPaint(hdc);
-				EndPaint(hwnd, &pt);
+				ReleaseDC(hwnd, hdc);
 			}
 			break;
 		case VK_DOWN:
@@ -168,9 +171,10 @@ LRESULT CALLBACK ROSE(HWND hwnd, UINT uMsg, WPARAM wParam, WPARAM Iparam)//å›žè°
 				
 				SquareDown();
 				Xmark++;
+			
 				hdc = BeginPaint(hwnd, &pt);
 				OnPaint(hdc);
-				EndPaint(hwnd, &pt);
+				ReleaseDC(hwnd, hdc);
 			}
 
 			break;
