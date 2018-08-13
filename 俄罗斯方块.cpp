@@ -127,7 +127,7 @@ LRESULT CALLBACK ROSE(HWND hwnd, UINT uMsg, WPARAM wParam, WPARAM Iparam)//回�
 
 
 	case WM_KEYDOWN://按键
-		hdc = BeginPaint(hwnd, &pt);
+	
 		switch (wParam)
 		{
 		case VK_RETURN://回车
@@ -138,6 +138,9 @@ LRESULT CALLBACK ROSE(HWND hwnd, UINT uMsg, WPARAM wParam, WPARAM Iparam)//回�
 			{
 				LeftMove();
 				Ymark--;
+				hdc = BeginPaint(hwnd, &pt);
+				OnPaint(hdc);
+				EndPaint(hwnd, &pt);
 			}
 			break;
 		case VK_RIGHT:
@@ -145,25 +148,34 @@ LRESULT CALLBACK ROSE(HWND hwnd, UINT uMsg, WPARAM wParam, WPARAM Iparam)//回�
 			{
 				RightMove();
 				Ymark++;
+				hdc = BeginPaint(hwnd, &pt);
+				OnPaint(hdc);
+				EndPaint(hwnd, &pt);
 			}
 			break;
 		case VK_UP:
 			if (CheckBottom())
 			{
 				ChangeShape();
+				hdc = BeginPaint(hwnd, &pt);
 				OnPaint(hdc);
+				EndPaint(hwnd, &pt);
 			}
 			break;
 		case VK_DOWN:
 			if ((CheckBottom()) && (!(CheckCrash(down))))
 			{
+				
 				SquareDown();
 				Xmark++;
+				hdc = BeginPaint(hwnd, &pt);
+				OnPaint(hdc);
+				EndPaint(hwnd, &pt);
 			}
 
 			break;
 		}
-		EndPaint(hwnd, &pt);
+		
 
 		break;
 
